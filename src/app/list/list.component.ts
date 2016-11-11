@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpService } from '../http.service';
+import { FilterPipe } from '../filter.pipe';
 
 @Component({
   selector: 'list',

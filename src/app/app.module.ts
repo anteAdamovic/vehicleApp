@@ -14,6 +14,7 @@ import { ContentComponent } from './content/content.component';
 
 import { HttpService } from './http.service';
 import { EventService } from './event.service';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EventService } from './event.service';
     ListComponent,
     ListItemComponent,
     TopMenuComponent,
-    ContentComponent
+    ContentComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
