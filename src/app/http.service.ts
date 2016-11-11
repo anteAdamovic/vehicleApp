@@ -8,14 +8,16 @@ export class HttpService {
 
   constructor(private http: Http) { }
 
-  getVehicles(): Observable<Object[]> {
+  getVehicles(): Observable<any> {
     return this.http.get(this.url)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
   private extractData(res: Response) {
-    return res.json();
+    let d = res.json()
+    console.log(d);
+    return d;
   }
 
   private handleError(error: Response | any){

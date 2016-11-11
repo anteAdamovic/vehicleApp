@@ -1,3 +1,5 @@
-<p>
-  list works!
-</p>
+<div class='list-wrapper'>
+  <p *ngFor='let vehicle of vehicles'>
+    {{vehicle.make}} - {{vehicle.model}} - {{vehicle.year}}
+  </p>
+</div>

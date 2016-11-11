@@ -14,23 +14,30 @@ export class ListComponent implements OnInit {
   constructor(private http: HttpService) { }
 
   ngOnInit() {
+
     if( localStorage['vehicles'] ){
-      this.vehicles = localStorage['vehicles'];
+      this.getVehiclesFromLocalStorage();
       console.log('Vehicles found in local storage.');
     }
     else {
       this.http.getVehicles()
                .subscribe(
                  vehicles => this.store(vehicles)
-               )
-
+               );
     }
+
   }
 
   private store(vehicles: any) {
-    console.log('Adding vehicles to local storage.');
-    localStorage['vehicles'] = vehicles;
-    this.vehicles = localStorage['vehicles'];
+    this.vehicles = vehicles;
+    this.setVehiclesInLocalStorage();
   }
 
+  private getVehiclesFromLocalStorage() {
+    this.vehicles = JSON.parse(localStorage['vehicles']);
+  }
+
+  private setVehiclesInLocalStorage() {
+    localStorage['vehicles'] = JSON.stringify(this.vehicles);
+  }
 }
