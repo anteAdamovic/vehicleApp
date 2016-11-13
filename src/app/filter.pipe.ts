@@ -10,6 +10,7 @@ import * as _ from 'underscore';
 export class FilterPipe implements PipeTransform {
 
   transform(items: any, args?: any): any {
+    if(args == null || args == undefined || args == '') return items;
     args = args.toLowerCase();
 
     return items.filter(item => {

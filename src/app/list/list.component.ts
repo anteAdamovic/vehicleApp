@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import * as _ from 'underscore';
 
 import { HttpService } from '../http.service';
+import { EventService } from '../event.service';
 import { FilterPipe } from '../filter.pipe';
 
 @Component({
@@ -11,9 +12,9 @@ import { FilterPipe } from '../filter.pipe';
 })
 export class ListComponent implements OnInit {
   vehicles: Object[] = [];
+  searchQuery: string = '';
 
-
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private events: EventService) { }
 
   ngOnInit() {
 
@@ -32,6 +33,11 @@ export class ListComponent implements OnInit {
                  }
                );
     }
+
+    this.events.search.subscribe(query => {
+      this.searchQuery = query;
+      console.log('Query: ' + this.searchQuery);
+    });
 
   }
 
