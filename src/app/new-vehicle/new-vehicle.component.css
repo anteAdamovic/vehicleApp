@@ -1,0 +1,12 @@
+.modal-wrapper {
+  position: absolute;
+  left: 35%;
+  top: 30px;
+  width: 30%;
+  border: 1px solid black;
+  background-color: white;
+}
+
+p {
+  margin: 0;
+}

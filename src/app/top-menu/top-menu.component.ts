@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { EventService } from '../event.service';
+
 @Component({
   selector: 'top-menu',
   templateUrl: './top-menu.component.html',
@@ -8,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class TopMenuComponent implements OnInit {
   modal: boolean = false;
 
-  constructor() { }
+  constructor(private events: EventService) { }
 
   ngOnInit() {
+  }
+
+  openModal() {
+    this.events.emitOpenModal();
   }
 
 }

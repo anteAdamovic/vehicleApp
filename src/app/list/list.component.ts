@@ -4,6 +4,7 @@ import * as _ from 'underscore';
 import { HttpService } from '../http.service';
 import { EventService } from '../event.service';
 import { FilterPipe } from '../filter.pipe';
+import { Vehicle } from '../vehicle';
 
 @Component({
   selector: 'list',
@@ -11,49 +12,62 @@ import { FilterPipe } from '../filter.pipe';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  vehicles: Object[] = [];
+  vehicles: Vehicle[] = [];
   searchQuery: string = '';
+  newVehicleModal: boolean = false;
 
   constructor(private http: HttpService, private events: EventService) { }
 
   ngOnInit() {
 
     if( localStorage['vehicles'] ){
-      console.log('Vehicles found in local storage.');
       this.getVehiclesFromLocalStorage();
     }
     else {
-      console.log('No vehicles found in local storage, fetching ...');
       this.http.getVehicles()
                .subscribe(
                  vehicles => {
                    this.vehicles = vehicles;
                    this.setVehiclesInLocalStorage();
-                   console.log('Vehicles succesfully saved in local storage.');
                  }
                );
     }
 
-    this.events.search.subscribe(query => {
-      this.searchQuery = query;
-      console.log('Query: ' + this.searchQuery);
-    });
+    this.events.search.subscribe(query => this.searchQuery = query);
+    this.events.openModal.subscribe(event => this.newVehicleModal = true);
+
+  }
+
+  addVehicle(vehicle: any){
+    if(!this.vehicleExists(vehicle)){
+      this.vehicles.push(vehicle);
+      this.setVehiclesInLocalStorage();
+    }
+    else
+      this.displayErrorMessage('Vehicle already exists!');
 
   }
 
   deleteVehicle(vehicle: any) {
-    console.log('Deleting vehicle: ');
-    console.log(vehicle);
     let index = this.vehicles.indexOf(vehicle);
 
     this.vehicles.splice(index, 1);
-    console.log('Vehicle at index after deletion:');
-    console.log(this.vehicles[index]);
-
     this.setVehiclesInLocalStorage();
-    // let temp = [];
-    // this.vehicles.forEach(vehicle => temp.push(vehicle));
-    // this.vehicles = temp;
+  }
+
+  vehicleExists(vehicle: Vehicle): boolean {
+    for(var x = 0; x < this.vehicles.length; x++){
+      let v = this.vehicles[x];
+      if(v.make == vehicle.make && v.model == vehicle.model && (v.year == vehicle.year || (v.year == null && isNaN(vehicle.year))))
+        return true;
+    }
+
+    return false;
+  }
+
+  displayErrorMessage(message: string) {
+    console.error(message);
+    console.log('Error: ', message);
   }
 
   private getVehiclesFromLocalStorage() {

@@ -1,3 +1,11 @@
-<p>
-  new-vehicle works!
-</p>
+<div class='modal-wrapper'>
+  <p>Make</p>
+  <input type='text' [(ngModel)]='make'>
+  <p>Model</p>
+  <input type='text' [(ngModel)]='model'>
+  <p>Year</p>
+  <input type='text' [(ngModel)]='year'>
+  <hr/>
+  <button class='btn-close' (click)='closeModal()'>Close</button>
+  <button class='btn-add' (click)='createVehicle()'>Add</button>
+</div>

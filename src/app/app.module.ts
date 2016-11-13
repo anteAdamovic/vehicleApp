@@ -15,6 +15,7 @@ import { ContentComponent } from './content/content.component';
 import { HttpService } from './http.service';
 import { EventService } from './event.service';
 import { FilterPipe } from './filter.pipe';
+import { OrderByNamePipe } from './order-by-name.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FilterPipe } from './filter.pipe';
     ListItemComponent,
     TopMenuComponent,
     ContentComponent,
-    FilterPipe
+    FilterPipe,
+    OrderByNamePipe
   ],
   imports: [
     BrowserModule,
