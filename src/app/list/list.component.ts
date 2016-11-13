@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import * as _ from 'underscore';
 
 import { HttpService } from '../http.service';
 import { FilterPipe } from '../filter.pipe';
@@ -17,21 +18,36 @@ export class ListComponent implements OnInit {
   ngOnInit() {
 
     if( localStorage['vehicles'] ){
-      this.getVehiclesFromLocalStorage();
       console.log('Vehicles found in local storage.');
+      this.getVehiclesFromLocalStorage();
     }
     else {
+      console.log('No vehicles found in local storage, fetching ...');
       this.http.getVehicles()
                .subscribe(
-                 vehicles => this.store(vehicles)
+                 vehicles => {
+                   this.vehicles = vehicles;
+                   this.setVehiclesInLocalStorage();
+                   console.log('Vehicles succesfully saved in local storage.');
+                 }
                );
     }
 
   }
 
-  private store(vehicles: any) {
-    this.vehicles = vehicles;
+  deleteVehicle(vehicle: any) {
+    console.log('Deleting vehicle: ');
+    console.log(vehicle);
+    let index = this.vehicles.indexOf(vehicle);
+
+    this.vehicles.splice(index, 1);
+    console.log('Vehicle at index after deletion:');
+    console.log(this.vehicles[index]);
+
     this.setVehiclesInLocalStorage();
+    // let temp = [];
+    // this.vehicles.forEach(vehicle => temp.push(vehicle));
+    // this.vehicles = temp;
   }
 
   private getVehiclesFromLocalStorage() {

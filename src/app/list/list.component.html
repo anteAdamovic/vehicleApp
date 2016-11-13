@@ -1,5 +1,6 @@
 <div class='list-wrapper'>
   <p *ngFor='let vehicle of vehicles | filter:"Audi"'>
     {{vehicle.make}} - {{vehicle.model}} - {{vehicle.year}}
+    <button class='delete-btn'(click)='deleteVehicle(vehicle)'>-</button>
   </p>
 </div>
