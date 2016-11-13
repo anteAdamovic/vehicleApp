@@ -4,7 +4,39 @@
   border: 1px solid gray;
 }
 
+.list-table {
+  min-width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.list-table tr:hover {
+  background-color: lightgray;
+}
+
+.header-table {
+  width: 100%;
+  text-align: center;
+}
+
+.header-make {
+  width: 25%;
+}
+
+.header-model {
+  width: 55%;
+}
+
+.header-year {
+  width: 12%;
+}
+
+.header-delete {
+  opacity: 0;
+}
+
 .delete-btn {
+  margin-left: 20px;
   padding: 1px 3px;
   border-radius: 10px;
   border: 2px solid red;

@@ -1,9 +1,21 @@
 <new-vehicle *ngIf='newVehicleModal' (close)='newVehicleModal = false' (create)='addVehicle($event)'></new-vehicle>
 <div class='list-wrapper'>
-  <p *ngFor='let vehicle of vehicles | orderByName | filter: searchQuery'>
-    {{vehicle.make}} - {{vehicle.model}} - {{vehicle.year}}
-    <button class='delete-btn'(click)='deleteVehicle(vehicle)'>
-      <i class="fa fa-minus" aria-hidden="true"></i>
-    </button>
-  </p>
+  <table class='list-table'>
+    <tr>
+      <th class='header-make'> Make </th>
+      <th class='header-model'> Model </th>
+      <th class='header-year'> Year </th>
+      <th class='header-delete'>.</th>
+    </tr>
+    <tr *ngFor='let vehicle of vehicles | orderByName | filter: searchQuery'>
+      <td>{{vehicle.make}}</td>
+      <td>{{vehicle.model}}</td>
+      <td>{{vehicle.year}}</td>
+      <td>
+        <button class='delete-btn'(click)='deleteVehicle(vehicle)'>
+          <i class="fa fa-minus" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
 </div>
