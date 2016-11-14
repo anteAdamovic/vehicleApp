@@ -1,20 +1,20 @@
 <new-vehicle *ngIf='newVehicleModal' (close)='newVehicleModal = false' (create)='addVehicle($event)'></new-vehicle>
-<div class='list-wrapper'>
+<div>
   <table class='list-table'>
     <tr>
-      <th class='header-make'> Make </th>
-      <th class='header-model'> Model </th>
-      <th class='header-year'> Year </th>
-      <th class='header-delete'>.</th>
+      <th> Make </th>
+      <th> Model </th>
+      <th> Year </th>
+      <th></th>
     </tr>
     <tr *ngFor='let vehicle of vehicles | orderByName | filter: searchQuery'>
       <td>{{vehicle.make}}</td>
       <td>{{vehicle.model}}</td>
       <td>{{vehicle.year}}</td>
       <td>
-        <button class='delete-btn'(click)='deleteVehicle(vehicle)'>
-          <i class="fa fa-minus" aria-hidden="true"></i>
-        </button>
+        <p class='delete-btn'(click)='deleteVehicle(vehicle)'>
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </p>
       </td>
     </tr>
   </table>

@@ -1,12 +1,18 @@
+.top-menu-wrapper {
+  margin: auto;
+  max-width: 600px;
+}
+
 .modal-button {
   float: left;
   margin: 5px;
-  padding: 5px 8px;
+  padding: 4px 7px;
   border-radius: 15px;
-  border: 2px solid green;
+  border: 1px solid #313b66;
   font-weight: bold;
   background-color: white;
-  color: green;
+  color: #313b66;
+  cursor: pointer;
 }
 
 .modal-button:focus {
@@ -18,10 +24,11 @@
 
 .modal-button:hover {
   color: white;
-  background-color: green;
+  background-color: #313b66;
 }
 
 .search {
   float: right;
-  margin: 10px;
+  margin-top: 5px;
+  margin-right: 5px;
 }

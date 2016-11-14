@@ -1,51 +1,47 @@
-.list-wrapper {
-  max-height: 500px;
-  overflow-y: scroll;
-  border: 1px solid gray;
-}
-
 .list-table {
   min-width: 100%;
   margin: auto;
   border-collapse: collapse;
 }
 
+.list-table td {
+  font-size: 12px;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.list-table tr {
+  border-top: 1px solid #4A5378;
+  background-color: #404970;
+  color: #bbc1dd;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .list-table tr:hover {
-  background-color: lightgray;
+  background-color: #39405E;
+  color: white;
 }
 
-.header-table {
-  width: 100%;
-  text-align: center;
+.list-table th {
+  padding: 15px 10px;
+  background-color: #313b66;
+  color: white;
+  text-align: left;
 }
 
-.header-make {
-  width: 25%;
-}
-
-.header-model {
-  width: 55%;
-}
-
-.header-year {
-  width: 12%;
-}
-
-.header-delete {
-  opacity: 0;
+.list-table th:hover {
+  background-color: #313b66;
+  color: white;
 }
 
 .delete-btn {
-  margin-left: 20px;
-  padding: 1px 3px;
-  border-radius: 10px;
-  border: 2px solid red;
-  color: red;
-  background-color: white;
-  line-height: 14px;
+  margin: 0;
+  border: none;
+  color: #bbc1dd;
+  cursor: pointer;
 }
 
 .delete-btn:hover {
-  color: white;
-  background-color: red;
+  color: red;
 }

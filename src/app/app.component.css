@@ -1,5 +1,16 @@
 .content {
   display: block;
   clear: both;
-  border: 1px solid black;
+  padding-top: 33px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.top-menu {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 34px;
+  background-color: white;
+  border-bottom: 1px solid black;
 }
