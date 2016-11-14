@@ -15,8 +15,7 @@ export class HttpService {
   }
 
   private extractData(res: Response) {
-    let d = res.json()
-    console.log(d);
+    let d = res.json();
     return d;
   }
 
@@ -29,7 +28,6 @@ export class HttpService {
     } else {
       msg = error.message ? error.message : error.toString();
     }
-    console.error(msg);
     return Observable.throw(msg);
   }
 }
