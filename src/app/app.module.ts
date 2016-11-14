@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NewVehicleComponent } from './new-vehicle/new-vehicle.component';
 import { SearchComponent } from './search/search.component';
 import { ListComponent } from './list/list.component';
-import { ListItemComponent } from './list-item/list-item.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { ContentComponent } from './content/content.component';
 
@@ -23,7 +22,6 @@ import { OrderByNamePipe } from './order-by-name.pipe';
     NewVehicleComponent,
     SearchComponent,
     ListComponent,
-    ListItemComponent,
     TopMenuComponent,
     ContentComponent,
     FilterPipe,

@@ -1,4 +1,4 @@
-<new-vehicle *ngIf='newVehicleModal' (close)='newVehicleModal = false' (create)='addVehicle($event)'></new-vehicle>
+<new-vehicle *ngIf='newVehicleModal' (close)='closeModal()' (create)='addVehicle($event)'></new-vehicle>
 <div>
   <table class='list-table'>
     <tr>
@@ -7,7 +7,7 @@
       <th> Year </th>
       <th></th>
     </tr>
-    <tr *ngFor='let vehicle of vehicles | orderByName | filter: searchQuery'>
+    <tr *ngFor='let vehicle of vehicles | orderByName: order | filter: searchQuery'>
       <td>{{vehicle.make}}</td>
       <td>{{vehicle.model}}</td>
       <td>{{vehicle.year}}</td>

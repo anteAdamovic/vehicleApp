@@ -1,5 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import * as _ from 'underscore';
+import { Component, OnInit, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 
 import { HttpService } from '../http.service';
 import { EventService } from '../event.service';
@@ -14,6 +13,8 @@ import { Vehicle } from '../vehicle';
 export class ListComponent implements OnInit {
   vehicles: Vehicle[] = [];
   searchQuery: string = '';
+  savedSearchQuery: string = '';
+  order: string = null;
   newVehicleModal: boolean = false;
 
   constructor(private http: HttpService, private events: EventService) { }
@@ -34,7 +35,12 @@ export class ListComponent implements OnInit {
     }
 
     this.events.search.subscribe(query => this.searchQuery = query);
-    this.events.openModal.subscribe(event => this.newVehicleModal = true);
+    this.events.openModal.subscribe(event => {
+      this.newVehicleModal = true;
+      this.savedSearchQuery = this.searchQuery;
+      this.searchQuery = '';
+      this.order = '';
+    });
 
   }
 
@@ -46,13 +52,24 @@ export class ListComponent implements OnInit {
     else
       this.displayErrorMessage('Vehicle already exists!');
 
+    this.searchQuery = this.savedSearchQuery;
+    this.order = null;
   }
 
   deleteVehicle(vehicle: any) {
+    // TODO Add component to handle user prompt
+    // let vehicleString = 'Make: ' + vehicle.make + ' , Model: ' + vehicle.model + ', Year: ' + vehicle.year;
+    // if(prompt('Are you sure you want to delete this vehicle ?', vehicleString) == null) return;
     let index = this.vehicles.indexOf(vehicle);
 
     this.vehicles.splice(index, 1);
     this.setVehiclesInLocalStorage();
+  }
+
+  closeModal() {
+    this.newVehicleModal = false;
+    this.searchQuery = this.savedSearchQuery;
+    this.order = null;
   }
 
   vehicleExists(vehicle: Vehicle): boolean {
@@ -66,8 +83,7 @@ export class ListComponent implements OnInit {
   }
 
   displayErrorMessage(message: string) {
-    console.error(message);
-    console.log('Error: ', message);
+    this.events.emitError(message);
   }
 
   private getVehiclesFromLocalStorage() {

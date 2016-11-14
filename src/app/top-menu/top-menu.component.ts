@@ -9,10 +9,27 @@ import { EventService } from '../event.service';
 })
 export class TopMenuComponent implements OnInit {
   modal: boolean = false;
+  errorMessage: string = '';
+  fade: boolean = false;
 
   constructor(private events: EventService) { }
 
   ngOnInit() {
+    this.events.error.subscribe(message => {
+      this.showErrorMessage(message);
+    });
+  }
+
+  showErrorMessage(message: string){
+    this.errorMessage = message;
+    this.fade = true;
+    this.fadeOut();
+  }
+
+  fadeOut() {
+    setTimeout(()=> {
+      this.fade = false;
+    }, 5000);
   }
 
   openModal() {

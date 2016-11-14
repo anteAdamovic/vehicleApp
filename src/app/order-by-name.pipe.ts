@@ -11,6 +11,9 @@ import { Vehicle } from './vehicle';
 export class OrderByNamePipe implements PipeTransform {
 
   transform(vehicles: any, args?: any): any {
+    if(args != null && args == '')
+      return vehicles;
+
     return vehicles.sort(this.compare);
   }
 

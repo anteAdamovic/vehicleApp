@@ -2,6 +2,14 @@
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
 
+# Design
+I tried to make design as simple as possible, while still looking somewhat decent.
+
+
+## Install angular-cli and dependencies
+Run `npm install -g angular-cli` to install angular-cli.
+Run `npm install` to install dependencies.
+
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
